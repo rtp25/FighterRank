@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--So I need to fix it to work on Chrome, but it works on IE. Just need to finishing styling table, and pages and
+establish the routes.-->
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Simple Sidebar - Start Bootstrap Template</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="static/styles/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <!--<link href="css/simple-sidebar.css" rel="stylesheet"> -->
+    <link type="text/css" href="static/styles/simple-sidebar.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <div class="d-flex" id="wrapper">
+
+    <!-- Sidebar 1.1 -->
+   <!-- <div class="bg-light border-right" id="sidebar-wrapper">
+      <div class="sidebar-heading">Start Bootstrap </div>
+      <div class="list-group list-group-flush">
+        <a href="#" class="list-group-item list-group-item-action bg-light">Home</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light">About</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light">Weight Classes</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light">Fighters</a>
+      </div>
+    </div> -->
+      <!-- Sidebar 1.2 -->
+      <div class="bg-light border-right" id="sidebar-wrapper">
+      <div class="sidebar-heading"> </div>
+      <div class="list-group list-group-flush">
+        <a href="http://127.0.0.1:5000/home" class="list-group-item list-group-item-action bg-light" >Home</a>
+        <a href="http://127.0.0.1:5000/about" class="list-group-item list-group-item-action bg-light" >About</a>
+        <a href="http://127.0.0.1:5000/wc" class="list-group-item list-group-item-action bg-light">Weight Classes</a>
+        <a href="http://127.0.0.1:5000/fighter" class="list-group-item list-group-item-action bg-light">Fighters</a>
+      </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+      <!--
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <button class="btn btn-primary" id="menu-toggle">Toggle Menu</button>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Dropdown
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      -->
+
+      <div class="container-fluid">
+        <h1 class="mt-4">Weight Classes</h1>
+        <p>Search for any weight class in our database and you will get a ranked list of top 10 fighters of that division.</p>
+      <!-- search form for search bar-->
+      </div>
+        {% from "_formhelpers.html" import render_field %}
+<form method=post>
+  <dl>
+    {{ render_field(form.search) }}
+    <p>
+  </dl>
+  <p><input type=submit value=Search>
+</form>
+
+
+
+    <!-- /#page-content-wrapper -->
+<!--
+<table id="table-example-1"><caption>Specification values: <b>Steel</b>, <b>Castings</b>,
+   Ann. A.S.T.M. A27-16, Class B;* P max. 0.06; S max. 0.05.</caption>
+   <thead><tr><th rowspan="2">Grade.</th>
+     <th rowspan="2">Yield Point.</th>
+     <th colspan="2">Ultimate tensile strength</th>
+     <th rowspan="2">Per cent elong. 50.8&nbsp;mm or&nbsp;2&nbsp;in.</th>
+     <th rowspan="2">Per cent reduct. area.</th>
+    </tr><tr><th>kg/mm<sup>2</sup></th>
+     <th>lb/in<sup>2</sup></th>
+    </tr></thead><tbody><tr><td>Hard</td>
+     <td>0.45 ultimate</td>
+     <td>56.2</td>
+     <td>80,000</td>
+     <td>15</td>
+     <td>20</td>
+    </tr><tr><td>Medium</td>
+     <td>0.45 ultimate</td>
+     <td>49.2</td>
+     <td>70,000</td>
+     <td>18</td>
+     <td>25</td>
+    </tr><tr><td>Soft</td>
+     <td>0.45 ultimate</td>
+     <td>42.2</td>
+     <td>60,000</td>
+     <td>22</td>
+     <td>30</td>
+    </tr></tbody></table>
+    -->
+
+        <table id ="rank_table">
+
+    <thead style="...">
+    <tr>
+        <th>Name</th>
+        <th>Rank</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for ob in my_objs %}
+    <tr>
+        <td>{{ ob.name }}</td>
+        <td>{{ ob.rank }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+        </div>
+  <!-- /#wrapper -->
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="static/styles/jquery.min.js"></script>
+  <script src="static/styles/bootstrap.bundle.min.js"></script>
+
+  <!-- Menu Toggle Script -->
+  <!---
+  <script>
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+  </script>
+  -->
+  </div>
+
+
+
+</body>
+
+</html>
