@@ -92,8 +92,10 @@ def featherweight():
         MyObj(result4[8][0], result4[8][1]),
         MyObj(result4[9][0], result4[9][1])
 
+
     ]
     return render_template('weightclasses.html', my_objs=my_objs, form=form)
+
 
 @app.route('/lw', methods=['GET', 'POST'])
 def lightweight():
@@ -125,6 +127,7 @@ def lightweight():
     ]
     return render_template('weightclasses.html', my_objs=my_objs, form=form)
 
+
 @app.route('/ww', methods=['GET', 'POST'])
 def welter_weight():
     form = MMASearchForm(request.form)
@@ -153,6 +156,7 @@ def welter_weight():
 
     ]
     return render_template('weightclasses.html', my_objs=my_objs, form=form)
+
 
 @app.route('/mw', methods=['GET', 'POST'])
 def middle_weight():
@@ -235,19 +239,11 @@ ranker3 = Ranker()
 ranker4 = Ranker()
 ranker5 = Ranker()
 
-result1 = ranker.addFighters('lw')
+
 result1 = ranker.rankFighters('lw')
-
-result2 = ranker2.addFighters('ww')
 result2 = ranker2.rankFighters('ww')
-
-result3 = ranker3.addFighters('mw')
 result3 = ranker3.rankFighters('mw')
-
-result4 = ranker4.addFighters('fw')
 result4 = ranker4.rankFighters('fw')
-
-
 
 if __name__ == "__main__":
     app.run(debug=True)

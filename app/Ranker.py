@@ -8,7 +8,7 @@ class Ranker:
     # ==========================================================================
     def __init__(self):
         self.fighters_dict = dict()
-        self.fighters_list = [[0 for x in range(2)] for y in range(11)]
+        self.fighters_list = []
 
     # ==========================================================================
     def calculateRank(self, wc, name):
@@ -24,7 +24,7 @@ class Ranker:
 
     # ==========================================================================
     def displayRankedFighters(self, wc):
-        ranked_fighters  = self.rankFighters(wc)
+        ranked_fighters = self.rankFighters(wc)
 
         for i in range(11):
             print(ranked_fighters[i])
@@ -33,24 +33,24 @@ class Ranker:
     # ==========================================================================
     def addFighters(self, wc):
         fighters_wc = self.conn.getAllFightersFromWeight(wc)
-        x = 0
+
         for row in fighters_wc:
             fighter_name = self.conn.getFighterName(wc, row.get('name'))
             rank = self.calculateRank(wc, fighter_name)
-            self.fighters_list[x] = (fighter_name, rank)
-            x = x + 1
+            a_fighter = (fighter_name, rank)
+            self.fighters_list.append(a_fighter)
+
         return self.fighters_list
 
     # adds single fighter from a weight class to list and returns the list as a table with the fighter rank
     # ==========================================================================
     def addFighter(self, wc, name):
         a_fighter = self.conn.getFighter(wc, name)
-        x = 0
         for row in a_fighter:
             fighter_name = self.conn.getFighterName(wc, row.get('name'))
             rank = self.calculateRank(wc, fighter_name)
-            self.fighters_list[x] = (fighter_name, rank)
-            x = x + 1
+            a_fighter = (fighter_name, rank)
+            self.fighters_list.append(a_fighter)
         return self.fighters_list
 
     # ==========================================================================
@@ -58,12 +58,11 @@ class Ranker:
 
         try:
             a_fighter, wc = self.conn.get_fighter_by_name(name)
-            x = 0
             for row in a_fighter:
                 fighter_name = self.conn.getFighterName(wc, row.get('name'))
                 rank = self.calculateRank(wc, fighter_name)
-                self.fighters_list[x] = (fighter_name, rank)
-                x = x + 1
+                a_fighter = (fighter_name, rank)
+                self.fighters_list.append(a_fighter)
             return self.fighters_list
         except TypeError:
             print("That fighter does not exist in the database!")
@@ -80,4 +79,8 @@ class Ranker:
         losses = self.conn.getFighterLosses(wc, name)
         win_ratio = wins / (wins + losses)
         return win_ratio
+
+    # ==========================================================================
+    def addNewFighterToDB(self,  wc, name, wins, losses, ko_wins, sub_wins, dec_wins, str_acr, grp_acr):
+        self.conn.addNewFighter(wc, name, wins, losses, ko_wins, sub_wins, dec_wins, str_acr, grp_acr)
 

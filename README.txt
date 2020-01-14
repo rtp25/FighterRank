@@ -3,7 +3,7 @@ Dependencies:
 Backend:
 Need mysql and flask installed
 
-Runnning the program:
+Running the program:
 Make sure that you are connected to the database.
 
 Make sure you are in the correct directory(/app)
