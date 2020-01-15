@@ -23,7 +23,7 @@ class DB_Connection:
 
     # ==========================================================================
     def getFighter(self, wc, name):
-        db_query = "SELECT * FROM " + wc + " WHERE name='" + name + "'";
+        db_query = "SELECT * FROM " + wc + " WHERE name='" + name + "'"
         self.cur.execute(db_query)
         result = self.cur.fetchall()
         #print(result[0].get("name"))
@@ -78,7 +78,7 @@ class DB_Connection:
 
     # ==========================================================================
     def get_fighter_by_name_mw(self, name):
-        db_query = "SELECT * FROM mw WHERE name='" + name + "'";
+        db_query = "SELECT * FROM mw WHERE name='" + name + "'"
         self.cur.execute(db_query)
         result = self.cur.fetchall()
         return result
@@ -150,3 +150,11 @@ class DB_Connection:
                                          "VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
         self.cur.execute(db_query, data)
         self.con.commit()
+
+    # ==========================================================================
+    # deletes a fighter of a specific weight class table from the database
+    def deleteFighter(self, wc, name):
+        db_query = "DELETE FROM " + wc + " WHERE name=%s"
+        self.cur.execute(db_query, name)
+        self.con.commit()
+

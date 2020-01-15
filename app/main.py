@@ -245,5 +245,7 @@ result2 = ranker2.rankFighters('ww')
 result3 = ranker3.rankFighters('mw')
 result4 = ranker4.rankFighters('fw')
 
+
+
 if __name__ == "__main__":
     app.run(debug=True)
