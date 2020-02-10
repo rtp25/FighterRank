@@ -1,6 +1,9 @@
 from app.DB_Connection import DB_Connection
 from operator import itemgetter
 
+# need to add delete fighter by name
+# need to finish the route for delete fighter
+# need to finish front html for delete fighter
 
 class Ranker:
     conn = DB_Connection()
@@ -66,6 +69,15 @@ class Ranker:
             return self.fighters_list
         except TypeError:
             print("That fighter does not exist in the database!")
+
+    # ==========================================================================
+    def delete_fighter_by_name(self, name):
+        try:
+            a_fighter, wc = self.conn.get_fighter_by_name(name)
+            self.conn.deleteFighter(wc, name)
+        except TypeError:
+            print("That fighter does not exist in the database!")
+
 
     # ==========================================================================
     def rankFighters(self, wc):

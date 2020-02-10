@@ -33,6 +33,9 @@
         <a href="http://127.0.0.1:5000/fighter" class="list-group-item list-group-item-action bg-light"> Search Fighter</a>
         <a href="http://127.0.0.1:5000/fighter" class="list-group-item list-group-item-action bg-light">Add Fighter</a>
         <a href="http://127.0.0.1:5000/deletefighter" class="list-group-item list-group-item-action bg-light">Delete Fighter</a>
+
+
+
       </div>
     </div>
     <!-- /#sidebar-wrapper -->
@@ -72,13 +75,43 @@
       -->
 
       <div class="container-fluid">
-        <h1 class="mt-4">Welcome to FighterRank!</h1>
-        <p>Check out the options on the sidebar to find either out where your favorite fighters in the UFC rank!</p>
+        <h1 class="mt-4">Fighter</h1>
+        <p>Search for a single fighter from the top ten of any weight class in our database and you will get the ranking
+            of the fighter!</p>
       </div>
+      <!-- /#search bar -->
+       {% from "_formhelpers.html" import render_field %}
+<form method=post>
+  <dl>
+    {{ render_field(form.search) }}
+    <p>
+  </dl>
+  <p><input type=submit value=Search>
+</form>
+        <table id ="rank_table">
+
+    <thead style="...">
+    <tr>
+        <th>Name</th>
+        <th>Rank</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for ob in my_objs %}
+    <tr>
+        <td>{{ ob.name }}</td>
+        <td>{{ ob.rank }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</div>
+
     </div>
     <!-- /#page-content-wrapper -->
 
   </div>
+
   <!-- /#wrapper -->
 
   <!-- Bootstrap core JavaScript -->

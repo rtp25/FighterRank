@@ -212,11 +212,9 @@ def search_wc():
 @app.route('/fighter', methods=['GET', 'POST'])
 def search_fighter():
     form = MMASearchForm(request.form)
-
-
     search_str = form.data['search']
-    ranker5 = Ranker()
-    result5 = ranker5.add_fighter_by_name(search_str)
+    a_ranker = Ranker()
+    result5 = a_ranker.add_fighter_by_name(search_str)
     if result5 is not None:
         my_objs = [
         MyObj(result5[0][0], result5[0][1])
@@ -231,6 +229,15 @@ def search_fighter():
 
     return render_template('singlefighter.html',  my_objs=my_objs, form=form)
 
+@app.route('/deletefighter', methods=['GET', 'POST'])
+def delete_fighter():
+    form = MMASearchForm(request.form)
+
+    search_str = form.data['search']
+    a_ranker = Ranker()
+    a_ranker.delete_fighter_by_name(search_str)
+    return render_template('deletefighter.html', form=form)
+
 
 conn = DB_Connection()
 ranker = Ranker()
@@ -244,6 +251,9 @@ result1 = ranker.rankFighters('lw')
 result2 = ranker2.rankFighters('ww')
 result3 = ranker3.rankFighters('mw')
 result4 = ranker4.rankFighters('fw')
+
+#ranker.addNewFighterToDB('lw', 'Paul Felder', 14, 4, 10, 2, 2, 0.44, 0.33)
+
 
 
 
