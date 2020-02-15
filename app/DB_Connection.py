@@ -144,12 +144,16 @@ class DB_Connection:
     # ==========================================================================
     # adds a new fighter of a specific weight class table to the database
     def addNewFighter(self, wc, name, wins, losses, ko_wins, sub_wins, dec_wins, str_acr, grp_acr):
+
         data = (name, wins, losses, ko_wins, sub_wins, dec_wins, str_acr, grp_acr)
 
         db_query = "INSERT INTO " + wc + "(name, wins, losses, KO_wins, SUB_wins, DEC_wins, str_accur, grp_accur) "\
                                          "VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
-        self.cur.execute(db_query, data)
-        self.con.commit()
+        try:
+            self.cur.execute(db_query, data)
+            self.con.commit()
+        except Exception as e:
+            print("Problem inserting new fighter in database.")
 
     # ==========================================================================
     # deletes a fighter of a specific weight class table from the database

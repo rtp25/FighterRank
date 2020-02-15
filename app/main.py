@@ -2,7 +2,8 @@ from app.DB_Connection import DB_Connection
 from app.Ranker import Ranker
 from flask import Flask, url_for
 from flask import render_template, redirect, request, flash
-from app.forms import MMASearchForm
+from app.forms import MMASearchForm,  MMACreateFighterForm
+
 
 
 #from flask-table import Table, Col
@@ -229,6 +230,7 @@ def search_fighter():
 
     return render_template('singlefighter.html',  my_objs=my_objs, form=form)
 
+# deletes a fighter
 @app.route('/deletefighter', methods=['GET', 'POST'])
 def delete_fighter():
     form = MMASearchForm(request.form)
@@ -238,6 +240,25 @@ def delete_fighter():
     a_ranker.delete_fighter_by_name(search_str)
     return render_template('deletefighter.html', form=form)
 
+#creates a fighter entry
+@app.route('/createfighter', methods=['GET', 'POST'])
+def create_fighter():
+    form = MMACreateFighterForm(request.form)
+
+    wc = form.weightClass.data
+    name = form.name.data
+    wins = form.wins.data
+    losses = form.losses.data
+    kos = form.koWins.data
+    subs = form.subWins.data
+    decs = form.decWins.data
+    strAccur = form.strAccur.data
+    grpAccur = form.grpAccur.data
+
+    a_ranker = Ranker()
+    a_ranker.addNewFighterToDB(wc, name, wins, losses, kos, subs, decs, strAccur, grpAccur)
+
+    return render_template('createfighter.html', form=form)
 
 conn = DB_Connection()
 ranker = Ranker()

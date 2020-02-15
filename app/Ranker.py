@@ -96,5 +96,6 @@ class Ranker:
     def addNewFighterToDB(self,  wc, name, wins, losses, ko_wins, sub_wins, dec_wins, str_acr, grp_acr):
         self.conn.addNewFighter(wc, name, wins, losses, ko_wins, sub_wins, dec_wins, str_acr, grp_acr)
 
+    # ==========================================================================
     def deleteFighterFromDB(self, wc, name):
         self.conn.deleteFighter(wc, name)
